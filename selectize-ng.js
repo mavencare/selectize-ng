@@ -18,7 +18,7 @@ angular.module('selectize-ng', [])
         options = angular.extend({
           delimiter: ',',
           persist: true,
-          mode: (element[0].tagName === 'SELECT') ? 'single' : 'multi'
+          mode: (element[0].tagName === 'SELECT') ? ((element[0].hasAttribute("multiple")) ? 'multi' : 'single') : 'multi'
         }, scope.selectize() || {});
 
         // Activate the widget
@@ -99,7 +99,7 @@ angular.module('selectize-ng', [])
             storeInvalidValues(values, parseValues(selectize.getValue()));
           });
         }
-        
+
         function setSelectizeOptions(newOptions) {
           $timeout(function(){
             // prevent digest problems
